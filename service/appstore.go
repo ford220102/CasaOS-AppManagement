@@ -84,6 +84,8 @@ func (s *appStore) UpdateCatalog() error {
 		if err != nil {
 			return err
 		}
+		defer res.Body.Close()
+
 		if res.StatusCode != http.StatusOK {
 			return fmt.Errorf("failed to get appstore size, status code: %d", res.StatusCode)
 		}
